@@ -3,3 +3,4 @@
 **/*.pyc
 venv
 *.png
+.DS_Store
