@@ -1,9 +1,15 @@
 from Classes.Node import Node
+import logging
 
 class Net:
     def __init__(self,name = "Example Network"):
+        """
+        Inizializza una nuova rete con un nome specificato.
+        Il nome è utile per identificare la rete stessa, il predefinito è "Example Network".
+        """
         self.nodes = []
         self.name = name
+        self.initializeLogFile()
     
     def addNode(self,name:str):
         '''Aggiunge un nodo alla rete'''
@@ -58,6 +64,7 @@ class Net:
             table.align = "c"  # allinea tutto al centro
             table.hrules = ALL  # mostra tutte le linee orizzontali
             print(table)
+            self.insertToLogFile(f"Tabella di routing per il nodo {node.name}:\n"+table.get_string())
             print()
         
         print("Fine delle tabelle di routing.")
@@ -66,3 +73,12 @@ class Net:
         from Classes.NetDrawer import Drawer
         drawer = Drawer()
         drawer.draw(self)
+    
+    def initializeLogFile(self):
+        '''Inizializza un file di log per la rete in cui inserire le routing tables'''
+        logging.basicConfig(filename='network'+self.name+'.log', level=logging.INFO)
+        logging.info("Inizializzazione del file di log completata.")
+    
+    def insertToLogFile(self,message:str):
+        '''Inserisce un messaggio nel file di log'''
+        logging.info(message)

@@ -5,6 +5,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Classes.Net import Net
 import random
 
+"""
+Qui creiamo una rete con 6 nodi, simulando il percorso di un pacchetto da un dispositivo di origine a Google.
+Questo esempio è utile per capire come funzionano i collegamenti tra i vari nodi di una rete, anche se nella realtà i collegamenti sono molto più complessi e numerosi.
+"""
+
 net = Net("Ping From Home to Google")
 
 nodes = ["Dispositivo di origine","Home Router","ISP","BackBone Node","IXP","Google Global Network"]

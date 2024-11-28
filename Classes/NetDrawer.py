@@ -2,13 +2,15 @@ from Classes.Net import Net
 
 class Drawer:
     def __init__(self):
+        self.pathToDir = "NetImages"
         pass
 
     def draw(self,net:Net):
-        '''Disegna la rete'''
+        '''Disegna la rete passata'''
         # use the networkx library to draw the network
         import networkx as nx
         import matplotlib.pyplot as plt
+        import datetime
         
         G = nx.Graph()
         
@@ -22,9 +24,22 @@ class Drawer:
         labels = nx.get_edge_attributes(G, 'weight')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
         # imposta la grandezza dell'immagine
-        plt.gcf().set_size_inches(12, 8)
+        plt.gcf().set_size_inches(16, 8)
+        # ottieni il datetime corrente
+        now = datetime.datetime.now()
         # salva il grafico in un file
-        plt.savefig(net.name+".png")
-        
+        fileName = net.name+now.strftime("%Y%m%d%H%M%S")+".png"
+        plt.savefig(fileName)
+        self.createImageDir()
+        self.moveCreatedImageToDir(fileName=fileName)
         plt.show()
-        
+    
+    def createImageDir(self):
+        import os
+        if not os.path.exists(self.pathToDir):
+            os.makedirs(self.pathToDir)
+    
+    def moveCreatedImageToDir(self,fileName):
+        import os
+        import shutil
+        shutil.move(fileName, self.pathToDir)

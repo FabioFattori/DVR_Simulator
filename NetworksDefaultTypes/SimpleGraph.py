@@ -3,6 +3,11 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Classes.Net import Net
 
+"""
+Qui creiamo una rete semplice con 10 nodi.
+In questa rete ci sono due centri, uno in A e uno in F collegati fra loro.
+"""
+
 net = Net("Simple Network")
 
 nodes = ["A","B","C","D","E","F","G","H","I","J"]

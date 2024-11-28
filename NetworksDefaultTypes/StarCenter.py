@@ -3,6 +3,10 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Classes.Net import Net
 
+"""
+Qui creiamo una rete con 10 nodi, simulando una rete a stella con centro in A.
+"""
+
 net = Net("Star Center Network")
 
 nodes = ["A","B","C","D","E","F","G","H","I","J"]
